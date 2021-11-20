@@ -19,8 +19,9 @@ export class BoardComponent extends Component<{}, BoardStateInterface> {
     cardChange(card: CardInterface) {
         // if previous selected card. compare. 
         if (this.state.firstSelectedCard) {
-            // remove card from cards.
             let currentDeck = this.state.cards;
+
+            // remove 2 cards from cards.
             if (this.state.firstSelectedCard.value === card.value) {
                 currentDeck[card.index].position = positionEnum.REMOVE;
                 currentDeck[this.state.firstSelectedCard.index].position = positionEnum.REMOVE;
@@ -44,9 +45,7 @@ export class BoardComponent extends Component<{}, BoardStateInterface> {
 
     startGame() {
         this.setState({ cards: [], firstSelectedCard: null, tryCount: 0, removedCount: 0 }, () => {
-            this.setState({ cards: this.createCards(12, 1, 100) }, () => {
-                console.log(this.state.cards);
-            });
+            this.setState({ cards: this.createCards(12, 1, 100) });
         });       
     }
 
